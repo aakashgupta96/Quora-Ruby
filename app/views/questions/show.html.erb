@@ -1,0 +1,15 @@
+<%= render 'question', :question => @question %>
+<% @question.answers.order("votes DESC").each() do|answer|%>
+	<%=render 'answer', :answer => answer%>
+<%end%>
+
+<%=form_for(@answer, :url => answer_question_path(@question)) do|f|%>
+	<div class="field">
+    	<%= f.label :answer %><br>
+    	<%= f.text_field :text, required: true %>
+  	</div>
+
+  	<div class="actions">
+    	<%= f.submit %>
+  	</div>
+<%end%>

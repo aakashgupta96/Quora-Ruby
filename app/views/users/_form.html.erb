@@ -1,0 +1,17 @@
+<%= form_for(@user, url: "/users/#{@user.id}/edit") do |f| %>
+    <p>
+      <%= f.label "Name" %><br />
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label "Contact Number" %><br />
+      <%= f.text_field :number %>
+    </p>
+    <p>
+      <%= f.hidden_field :id %>
+    </p>
+    <p>
+      <%= f.file_field :avatar%>
+    </p>
+    <p><%= f.submit "Update Profile"%></p>
+<% end %>

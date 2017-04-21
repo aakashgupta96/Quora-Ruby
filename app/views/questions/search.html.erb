@@ -1,0 +1,12 @@
+<div>
+<% if @questions.count==0 %>
+	<h1> No matches found!! </h1>
+<% else %>
+	<h1>
+		Related searched are :
+	</h1>
+	<% @questions.each do |question| %>
+	    <%= render 'question', :question => question %> 
+	<% end %>
+<% end %>
+</div>

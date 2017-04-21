@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quora</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <!-- Compiled and minified CSS  except version 0.97.6 of materialize, no lib is compatible
+  because below this version, the side bar will not work and above this version the drop down button
+  will not work on hovering-->
+  <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+</head>
+<body>
+
+
+<% if not notice.nil? or not alert.nil? %>
+    <div id="alert"><p id="notice" style="color : orange ;  "  ><%=notice %></p>
+      <p id="alert" style=" color : orange ; "><%=alert %></p>
+    </div>
+<% end %>
+
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper container">
+      <a href="/" class="brand-logo">Quora</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul id="head_nav" class="right hide-on-med-and-down">
+        <li><a href="/questions/new">Ask Question</a></li>
+        <% if user_signed_in? %>
+            <li>
+              <div class='dropdown-button btn' data-activates='dropdown1' style="max-width : 180px;">Hi <%=current_user.name %></div>
+              <!-- Dropdown Structure -->
+              <ul id='dropdown1' class='dropdown-content'>
+                <li><%= link_to "Profile", user_profile_path(current_user.id)%></li>
+                <li><%= link_to "Edit Profile", edit_profile_path(current_user.id)%></li>
+                <li class="divider"></li>
+                <li><%= link_to "SignOut", destroy_user_session_path, method: "Delete"%></li>
+              </ul>
+            </li>
+        <% else %>
+            <li><%= link_to "LogIn", new_user_session_path %></li>
+            <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <% end%>
+        </li>
+        <li>
+          <nav>
+            <div class="nav-wrapper">
+              <form action="/questions/search" method="get">
+                <div class="input-field">
+                  <input id="search" name="query" type="search" required>
+                  <label for="search"><i class="material-icons">search</i></label>
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+            </div>
+          </nav>
+        </li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="/questions/new"">Ask Question</a></li>
+        <% if user_signed_in? %>
+            <li style="color: black;">
+              <%= link_to "Hello "+current_user.name, '#'%>
+            </li>
+            <li style="color: black;">
+              <%= link_to "Profile", user_profile_path(current_user.id)%>
+            </li>
+            <li style="color: black;">
+              <%= link_to "Edit Profile" , edit_profile_path(current_user.id)%>
+            </li>
+            <li>
+              <%= link_to "SignOut", destroy_user_session_path, method: "Delete"%>
+            </li>
+        <% else %>
+            <li>
+              <%= link_to "LogIn", new_user_session_path %>
+            </li>
+            <li>
+              <%= link_to "Sign Up", new_user_registration_path %>
+            </li>
+        <% end %>
+        <li>
+          <nav>
+            <div class="nav-wrapper">
+              <form action="/questions/search" method="get">
+                <div class="input-field">
+                  <input id="search" name="query" type="search" required>
+                  <label for="search"><i class="material-icons">search</i></label>
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+            </div>
+          </nav>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<div class = "container">
+  <%= yield %>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js" defer></script>
+<script>
+  $(document).ready(function(){
+    $(".button-collapse").sideNav();
+    $("#alert").delay(4000).slideUp('slow');
+    $('.dropdown-button').dropdown({
+      inDuration: 400,
+      outDuration: 600,
+      constrain_width: true, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: true, // Displays dropdown below the button
+      alignment: 'left' // Displays dropdown with edge aligned to the left of button
+        }
+    );
+
+  })
+  <% if not pop.nil? %>
+  alert("<%= pop %>")
+  <%end%>
+</script>
+</body>
+</html>

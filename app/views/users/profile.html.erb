@@ -1,0 +1,22 @@
+<h1>
+  Profile
+</h1>
+<div>
+  <%= image_tag user_image_url(@user),class: "avatar"%> <%= @user.name %>
+</div>
+<div>Questions : <%=questions_asked(@user).count%></div>
+<div>Answers : <%=answers_given(@user).count%></div>
+<div>Followers : <%=@user.followers.count%></div>
+<div>Following : <%=@user.followees.count%></div>
+<div>
+  <% if user_signed_in? &&  @user.id != current_user.id %>
+      <%= form_for(@user, :url => "/users/follow" )do|f|%>
+          <%=  hidden_field_tag 'profile_id', @user.id %>
+          <% if user_following @user %>
+              <%= f.submit "Unfollow" %>
+          <%else%>
+              <%= f.submit "Follow" %>
+          <%end%>
+      <%end%>
+  <%end%>
+</div>

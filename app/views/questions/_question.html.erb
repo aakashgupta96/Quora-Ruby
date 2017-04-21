@@ -1,0 +1,9 @@
+<div class="question">
+	<div class="question_text">
+		<%= link_to "Q: "+question.text, question %>
+	</div>
+	<div class="description">
+		<p>Author: <%= question.user.name %></p>
+		<p>Answers: <%= question.answers.count %></p>
+	</div>
+</div>

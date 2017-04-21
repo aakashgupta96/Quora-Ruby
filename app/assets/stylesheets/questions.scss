@@ -1,0 +1,56 @@
+// Place all the styles related to the questions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.question
+{
+	color : black !important;
+	box-shadow: 10px 10px 25px hsl(120,80%,60%);
+	border-radius: 20px;
+	margin: 30px;
+	padding : 10px;
+	display : flex;
+	flex-direction : column;
+	background-color: hsl(120, 100%, 85%);//hsl(47, 100%, 73%);//hsl(8, 100%, 90%);
+}
+.question_text
+{
+	font-size : 30px;
+}
+a
+{
+	color : black !important;
+}
+a:hover
+{
+	#background-color: black;
+	color: hsl(0,0%,60%) !important;
+}
+nav a:hover, .question a:hover
+{
+	#background-color: auto !important;
+	color: hsl(0,0%,100%) !important;
+}
+.description
+{
+	padding: 0px 20px 0px 20px;
+	display : flex;
+	justify-content: space-between;
+	text-align : right;	
+}
+.answer
+{
+	display : flex;
+	flex-direction : column;
+	justify-content: space-between;
+	border: solid hsl(0,80%,90%) 1px;
+	box-shadow: 10px 10px 25px hsl(150,50%,80%);
+	border-radius: 20px;
+	margin: 30px;
+	padding : 10px;
+	background-color: hsl(120, 100%, 90%);//hsl(0,50%,95%);
+}
+.answer>div
+{
+	display: flex;
+	justify-content: space-between;
+}
